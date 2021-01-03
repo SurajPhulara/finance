@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+{% if action != 0  %}
+    <div class="alert alert-primary full-width" role="alert">
+    {% if action == 1 %}
+    Bought!
+    {% elif action == 2 %}
+    Sold!
+    {% else %}
+    Password Reset Successfully
+    {% endif %}
+    </div>
+{% endif %}
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>TOTAL</th>
+        </tr>
+        </thead>
+        {% for i in range(number)%}
+            {%if i%2 != 0 %}
+                <thead>
+            {%else%}
+                <tbody>
+            {%endif%}
+
+            <tr>
+            <td>{{name[i]["symbol"]}}</td>
+            <td>{{name[i]["name"]}}</td>
+            <td>{{name[i]["number"]}}</td>
+            <td>${{name[i]["price"]}}</td>
+            <td>${{name[i]["total"]}}</td>
+            </tr>
+
+            {%if i%2 != 0 %}
+                </thead>
+            {%else%}
+                </tbody>
+            {%endif%}
+        {% endfor %}
+        {%if number%2 != 0 %}
+            <thead>
+        {%else%}
+            <tbody>
+        {%endif%}
+
+            <tr>
+            <td>CASH</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>${{cash}}</td>
+            </tr>
+
+            {%if number%2 != 0 %}
+                </thead>
+            {%else%}
+                </tbody>
+            {%endif%}
+            {%if number%2 == 0 %}
+                <thead>
+            {%else%}
+                <tbody>
+            {%endif%}
+
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>${{s}}</b></td>
+            </tr>
+
+            {%if number%2 == 0 %}
+                </thead>
+            {%else%}
+                </tbody>
+            {%endif%}
+    </table>
+
+{% endblock %}

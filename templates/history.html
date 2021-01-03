@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Transacted</th>
+        </tr>
+        </thead>
+        {% for i in range(number)%}
+            {%if i%2 != 0 %}
+                <thead>
+            {%else%}
+                <tbody>
+            {%endif%}
+
+            <tr>
+            <td>{{name[i]["symbol"]}}</td>
+            <td>{{name[i]["number"]}}</td>
+            <td>${{name[i]["price"]}}</td>
+            <td>${{name[i]["transacted"]}}</td>
+            </tr>
+
+            {%if i%2 != 0 %}
+                </thead>
+            {%else%}
+                </tbody>
+            {%endif%}
+        {% endfor %}
+    </table>
+
+{% endblock %}
